@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<!--
+=================================================================================
+  PLANTILLA DE ARTÍCULO — ARQENRIQUEZ.COM
+  -------------------------------------------------------------------------------
+  CÓMO USAR ESTA PLANTILLA:
+    1. Duplica este archivo.
+    2. Muévelo a la carpeta /articulos/ con el nombre <slug>.html
+       (mismo slug que pones en /data/articulos.js)
+    3. Edita los puntos marcados con  ✏️  abajo.
+    4. Añade la entrada correspondiente en /data/articulos.js
+       (los nuevos arriba del array para que aparezcan primero).
+
+  ZONAS QUE DEBES EDITAR (busca el emoji ✏️):
+    - <title>                          ✏️ título + " · Jorge Enríquez"
+    - <meta name="description">        ✏️ resumen del artículo
+    - <meta property="og:title">       ✏️ mismo título
+    - <meta property="og:description"> ✏️ mismo resumen
+    - .article-category                ✏️ categoría en MAYÚSCULAS
+    - .article-date                    ✏️ fecha legible (ej: "13 MAY 2026")
+    - .article-read                    ✏️ tiempo de lectura (ej: "8 MIN")
+    - <h1 class="article-title">       ✏️ título del artículo
+    - <p class="article-lede">         ✏️ bajada / resumen del artículo
+    - <div class="article-body">       ✏️ contenido del artículo (todo el cuerpo)
+=================================================================================
+-->
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ✏️ TÍTULO DEL ARTÍCULO + nombre del autor -->
+  <title>Aprendizaje Infinito · Jorge Enríquez</title>
+  <!-- ✏️ RESUMEN para SEO y para compartir en redes -->
+  <meta name="description" content="¿Cuántas horas de tu vida le dedicaste este año al aprendizaje y a tu crecimiento?">
+  <meta name="author" content="Jorge Enríquez">
+
+  <!-- Open Graph (cuando alguien lo comparte en WhatsApp, LinkedIn, etc.) -->
+  <meta property="og:title" content="Aprendizaje Infinito · Jorge Enríquez">
+  <meta property="og:description" content="¿Cuántas horas de tu vida le dedicaste este año al aprendizaje y a tu crecimiento?">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="es_MX">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Aprendizaje Infinito · Jorge Enríquez">
+  <meta name="twitter:description" content="¿Cuántas horas de tu vida le dedicaste este año al aprendizaje y a tu crecimiento?">
+
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Estilos (ojo: ../ porque este archivo está dentro de /articulos/) -->
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+
+  <!-- ====================================================================
+       NAVBAR (mismo que la portada, pero los enlaces apuntan a ../index.html)
+  ===================================================================== -->
+  <nav class="nav" aria-label="Navegación principal">
+    <a href="../index.html" class="logo" aria-label="Inicio · Jorge Enríquez">
+      arq<i>·</i>enriquez
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="../index.html#blog">Blog</a></li>
+      <li><a href="../index.html#proyectos">Proyectos</a></li>
+      <li><a href="../index.html#sobre">Sobre mí</a></li>
+      <li><a href="../index.html#cursos">Cursos</a></li>
+      <li><a href="../index.html#contacto">Contacto</a></li>
+      <li>
+        <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema oscuro/claro" title="Cambiar tema">
+          <span class="theme-icon">◐</span>
+        </button>
+      </li>
+    </ul>
+  </nav>
+
+
+  <!-- ====================================================================
+       ARTÍCULO
+  ===================================================================== -->
+  <main>
+    <article class="article-page">
+
+      <!-- HEADER DEL ARTÍCULO ============================================ -->
+      <header class="article-header">
+        <div class="container">
+          <a href="../index.html#blog" class="article-back">← Volver al blog</a>
+
+          <p class="article-meta-line">
+            <!-- ✏️ CATEGORÍA -->
+            <span class="article-category">RANDOM</span>
+            <span class="article-meta-sep">·</span>
+            <!-- ✏️ FECHA LEGIBLE -->
+            <span class="article-date">20 JUL 2020</span>
+            <span class="article-meta-sep">·</span>
+            <!-- ✏️ TIEMPO DE LECTURA -->
+            <span class="article-read">7 MIN</span>
+          </p>
+
+          <!-- ✏️ TÍTULO DEL ARTÍCULO -->
+          <h1 class="article-title">Aprendizaje Infinito</h1>
+
+          <!-- ✏️ BAJADA / SUBTÍTULO / RESUMEN -->
+          <p class="article-lede">
+          ¿Cuántas horas de tu vida le dedicaste este año al aprendizaje y a tu crecimiento?
+          </p>
+        </div>
+      </header>
+
+
+      <!-- IMAGEN PRINCIPAL DEL ARTÍCULO -->
+      <figure class="article-hero">
+        <img src="../assets/images/articulos/aprendizaje-infinito.jpg" alt="Vitral o luz contemplativa">
+      </figure>
+
+
+      <!-- CUERPO DEL ARTÍCULO ============================================
+           Aquí va el contenido. Las etiquetas disponibles son:
+             <p>            párrafo normal
+             <h2>           sección
+             <h3>           subsección
+             <blockquote>   cita destacada
+             <ul>/<ol>      listas
+             <a href="">    enlaces
+             <strong>       énfasis fuerte (negrita)
+             <em>           énfasis sutil (cursiva)
+             <code>         fragmento de código en línea
+             <pre><code>    bloque de código
+             <img src="" alt="">  imagen
+             <figure><figcaption> imagen con leyenda
+           Todas tienen estilo automático — no necesitas añadir clases.
+      ================================================================ -->
+      <div class="article-body">
+        <div class="container">
+
+          <!-- ✏️ EMPIEZA AQUÍ EL CONTENIDO DE TU ARTÍCULO -->
+
+          <p>
+            En mi juventud acostumbraba trabajar en los veranos. Cuando tenía 17 años, había trabajado en 
+            Domino’s pizza, como empleado de piso. El siguiente verano, cuando ya tenía 18 años, ingresé 
+            solicitudes de empleo en varios lugares, y un día, fueron a buscarme directamente a mi casa 
+            para ofrecerme un puesto de trabajo. La persona que quería contratarme me dijo que, como ya 
+            había trabajado anteriormente en Domino´s Pïzza, tendría una contratación inmediata como 
+            repartidor en un nuevo negocio de hamburguesas. Sin embargo, tuve que ser sincero con ella. 
+            Le comenté que yo había trabajado dentro de la tienda, en preparación de pizzas y ventas, no 
+            como repartidor, pero que me interesaba mucho trabajar en ese nuevo negocio, y que si tenía un 
+            puesto dentro de tienda, con gusto podría incorporarme a su equipo. Ella me comentó que solo 
+            staban contratando repartidores, y me hizo la pregunta esperada: <em>¿Sabes andar en moto? -Si-</em> 
+            contesté naturalmente. <em>Contratado</em> me dijo, <em>– Presentate el próximo lunes a primera hora.</em>
+          </p>
+          <p>
+            Debo aclarar en este punto que… yo en mi vida había manejado una moto. Jamás de los jamases 
+            había conducido ningún tipo de motocicleta. No tenía idea de cómo operaba la caja de cambios, 
+            el clutch, etc. pero acepté el trabajo. Ese día fue un viernes. Es decir, <strong>solo tenía un 
+            fin de semana para aprender a andar en moto.</strong>
+          </p>
+          <p>
+            Mi papá tenía un negocio en el que algunos de sus empleados eran los típicos cobradores en moto, 
+            así que le pedí que uno de sus trabajadores dejara en casa una de las motos de la empresa, y le 
+            pedí que si podría enseñarme lo básico ese fin de semana. Así fue. Para mi sorpresa, fue la moto 
+            más vieja que pudieron prestarme la que apareció en mi casa. Y en ese cascajo de moto aprendí 
+            lo básico ese fin de semana. La verdad me sentía un poco confiado, pues si sabía manejar autos 
+            desde joven, conocía las calles, la ciudad, etc. para mí era una mezcla entre manejar un auto 
+            y andar en bicicleta.
+          </p>
+          <p>
+            El siguiente lunes me presenté super temprano y motivado. Como mis empleadores sabían que no 
+            había trabajado como repartidor antes, me asignaron una moto semiautomatica, tipo “Vespa” lo 
+            ual me pareció bien. No era muy veloz y no tendría que batallar con el clutch. Todo bien. 
+            Inicié ese día, mi primer reparto fue todo un reto. Estaba super nervioso, pero a la vez 
+            emocionado. Así fue todo el día y los siguientes días. Todo marchó bien, me gustaba el trabajo, 
+            ganaba bien, según yo, al menos, mejor que como empleado de piso
+          </p>
+          <p>
+            En este punto, quisiera decirte que todo fue un éxito, vencí mis miedos y aprendí rápido, sin 
+            embargo, no fue así. Ese mismo verano, después de aproximadamente mes y medio de trabajo, 
+            <em><strong>un auto me atropelló fuertemente.</strong></em> Salí volando varios metros, mi moto 
+            quedó destrozada y me lleve un fuertisimo golpe. Lo bueno es que tenía todo mi equipo de protección
+             y no me rompí ningún hueso. En cuanto me recupere del accidente, (un par de semanas después) 
+             renuncié a mi empleo de repartidor.
+          </p>
+          <p>
+            Pero tampoco termina la historia que quiero contarte ahí. El siguiente verano, nuevamente tenía 
+            la inquietud de buscar trabajo, y ¿que crees que fue lo primero que encontré? Efectivamente, de 
+            repartidor. Otra empresa nueva de comida buscaba repartidores y me contrataron inmediatamente por 
+            mi “experiencia”. Sin embargo, esta nueva oportunidad si fue totalmente diferente. Fui un 
+            “exitaso” entregaba mas repartos de los que se podían imaginar, conocía a la perfección la ciudad. 
+            Manejaba mi nueva moto a la perfección, (esta vez si estándar y grande). Cuando terminó el verano, 
+            mis empleadores no querían que renunciara. Y ahí sí es donde termina esa historia de trabajos de 
+            verano.
+          </p>
+          <p>
+            Mi papá siempre me dijo: “Si en algún trabajo o en la vida, no sabes algo, tu di que sí, e 
+            inmediatamente ponte a investigar y aprender de ese tema. Haz lo que tengas que hacer, pero no 
+            digas que no sabes o no puedes hacerlo” y así he tratado de hacerlo a lo largo de mi vida. Debo 
+            reconocer que no se si sea el mejor de los consejos. Es decir, ese verano, en el que me 
+            atropellaron, pudo haber sido peor. Otras veces en mi vida laboral, he perdido dinero, por querer 
+            emprender negocios de los cuales no domino, o me he visto en dificultades abismales.. Aquí es 
+            donde sí puedo decir, que en lo profesional, he aprendido una infinidad de cosas que, ni la 
+            escuela, ni las capacitaciones o cursos puedan darme. Puede ser un camino dificil de aprendizaje, 
+            pero definitivamente es un camino para crecer.
+          </p>
+          <p>
+            Uno de mis mentores, menciona algo parecido. Lo llama: <em>“El gen del aprendizaje infinito”</em>. 
+            El siempre menciona la importancia de intentar siempre ser ese aprendiz, al que no se le acaba la 
+            sed de aprender. Constantemente pregunta: <em><strong>¿Cuántas horas de tu vida le dedicaste este año a 
+            aprendizaje, a tu crecimiento, a todas esas actividades que te enriquecen como persona?</strong></em>
+             Y todavía más allá, <em><strong>¿Cuánto dinero invertiste en tu crecimiento?</strong></em> El gen 
+             del aprendizaje infinito no es otra cosa más que una programación biológica integral, que nos impulsa
+             a seguir cambiando desde dentro, desde la nuestra esencia intelectual y neuronal, y que nos impulsa 
+             a decir, mañana voy a ser, algo mucho más fuerte, mucho más íntegro y mucho más poderoso, de lo que 
+             he llegado a ser hasta el día de hoy. Quizá, genéticamente, se ha detenido nuestro crecimiento 
+             físico, producto de la edad que tenemos, pero nuestro crecimiento intelectual y espiritual, nadie 
+             lo puede detener. Lo único que nos detiene, es nuestra propia limitante de no vernos como un 
+             eterno estudiante
+          </p>
+
+          <h3>El gen del aprendizaje infinito no es otra cosa más que una programación biológica integral, 
+            que nos impulsa a seguir cambiando desde dentro, desde la nuestra esencia intelectual y neuronal, 
+            y que nos impulsa a decir, mañana voy a ser, algo mucho más fuerte, mucho más íntegro y mucho más 
+            poderoso, de lo que he llegado a ser hasta el día de hoy</h3>
+
+          <p>
+            <strong>¿Tu que opinas? ¿Cómo actúas cuando no sabes algo? ¿Te limitas en ese punto o te impulsas?</strong>
+          </p>
+          <blockquote>
+            P.D. Esto lo he seguido haciendo hasta el día de hoy.
+          </blockquote>
+
+          <!-- ✏️ TERMINA AQUÍ EL CONTENIDO -->
+
+        </div>
+      </div>
+
+
+      <!-- BLOQUE FINAL — SOBRE EL AUTOR ================================== -->
+      <footer class="article-footer">
+        <div class="container">
+          <div class="article-author">
+            <p class="article-author-tag">ESCRITO POR</p>
+            <h3>Jorge Enríquez</h3>
+            <p>Arquitecto, Blogger, polímata. Construyo espacios y pienso en voz alta.</p>
+            <a href="../index.html#sobre" class="article-author-link">Saber más sobre mí →</a>
+          </div>
+        </div>
+      </footer>
+
+    </article>
+  </main>
+
+
+  <!-- ====================================================================
+       FOOTER (mismo que la portada)
+  ===================================================================== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© <span id="currentYear">2026</span> · JORGE ENRÍQUEZ</p>
+      <p>HECHO CON INTENCIÓN</p>
+    </div>
+  </footer>
+
+
+  <!-- ====================================================================
+       JAVASCRIPT (mismo que la portada)
+  ===================================================================== -->
+  <script src="../js/script.js" defer></script>
+
+</body>
+</html>

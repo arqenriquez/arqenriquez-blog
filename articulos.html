@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Todos los artículos · Jorge Enríquez</title>
+  <meta name="description" content="Archivo completo de escritos de Jorge Enríquez sobre arquitectura, inteligencia artificial, project management, filosofía y teología.">
+  <meta name="author" content="Jorge Enríquez">
+
+  <meta property="og:title" content="Todos los artículos · Jorge Enríquez">
+  <meta property="og:description" content="Archivo completo de escritos de Jorge Enríquez.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_MX">
+
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <!-- ====================================================================
+       NAVBAR
+  ===================================================================== -->
+  <nav class="nav" aria-label="Navegación principal">
+    <a href="index.html" class="logo" aria-label="Inicio · Jorge Enríquez">
+      arq<i>·</i>enriquez
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#blog">Blog</a></li>
+      <li><a href="index.html#proyectos">Proyectos</a></li>
+      <li><a href="index.html#sobre">Sobre mí</a></li>
+      <li><a href="index.html#cursos">Cursos</a></li>
+      <li><a href="index.html#contacto">Contacto</a></li>
+      <li>
+        <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema oscuro/claro" title="Cambiar tema">
+          <span class="theme-icon">◐</span>
+        </button>
+      </li>
+    </ul>
+  </nav>
+
+
+  <!-- ====================================================================
+       HEADER DE LA PÁGINA DE ARCHIVO
+  ===================================================================== -->
+  <main>
+    <section class="archive-page">
+
+      <header class="archive-header">
+        <div class="container">
+          <a href="index.html#blog" class="article-back">← Volver a la portada</a>
+          <p class="archive-eyebrow">— ARCHIVO COMPLETO</p>
+          <h1 class="archive-title">Todos los artículos</h1>
+          <p class="archive-lede">
+            Notas, ensayos y reflexiones. Filtra por categoría usando las pestañas.
+          </p>
+        </div>
+      </header>
+
+
+      <!-- ================================================================
+           PESTAÑAS DE FILTRO POR CATEGORÍA
+           - Generadas dinámicamente desde articulos.js (sección 4.2 del JS)
+           - El botón "Todas" siempre va primero
+           - Si la URL tiene ?cat=xxx, esa pestaña se activa al cargar
+      ================================================================ -->
+      <div class="archive-tabs-wrap">
+        <div class="container">
+          <div class="archive-tabs" id="archiveTabs" role="tablist">
+            <!-- Pestañas inyectadas por script.js -->
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ================================================================
+           LISTADO DE ARTÍCULOS (vista lista)
+           - Cada item: miniatura izquierda + título/excerpt derecha
+           - Generado dinámicamente desde articulos.js
+      ================================================================ -->
+      <div class="archive-list-wrap">
+        <div class="container">
+          <div class="archive-list" id="archiveList">
+            <!-- Items inyectados por script.js -->
+          </div>
+
+          <!-- Mensaje cuando no hay resultados (oculto por default) -->
+          <p class="archive-empty" id="archiveEmpty" hidden>
+            No hay artículos en esta categoría todavía.
+          </p>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+
+  <!-- ====================================================================
+       FOOTER
+  ===================================================================== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© <span id="currentYear">2026</span> · JORGE ENRÍQUEZ</p>
+      <p>HECHO CON INTENCIÓN</p>
+    </div>
+  </footer>
+
+
+  <!-- ====================================================================
+       JAVASCRIPT
+       Mismo orden que en index.html: primero los datos, luego el script.
+  ===================================================================== -->
+  <script src="data/articulos.js" defer></script>
+  <script src="js/script.js" defer></script>
+
+</body>
+</html>

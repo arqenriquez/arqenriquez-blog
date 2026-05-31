@@ -1,0 +1,1606 @@
+/* ============================================================================
+   ARQENRIQUEZ.COM — STYLES
+   Marca personal de Jorge Enríquez · Arquitecto, escritor, polímata
+   ----------------------------------------------------------------------------
+   ESTRUCTURA DE ESTE ARCHIVO:
+   1. Variables CSS (modo claro y oscuro)
+   2. Reset y base
+   3. Tipografía
+   4. Layout (container, grid)
+   5. Componentes (botones, cards, etc.)
+   6. Secciones específicas
+   7. Responsive (media queries)
+
+   FILOSOFÍA: usamos CSS variables para que el toggle de tema cambie
+   TODO el sitio cambiando solo unas pocas líneas.
+============================================================================ */
+
+
+/* ============================================================================
+   1. VARIABLES CSS (TOKENS DE DISEÑO)
+   ----------------------------------------------------------------------------
+   :root es el elemento padre de todo (el <html>). Las variables que definamos
+   aquí están disponibles en todo el documento usando var(--nombre-variable).
+
+   Definimos PRIMERO el modo claro (default) y DESPUÉS sobrescribimos las
+   variables cuando el atributo data-theme="dark" esté en el <html>.
+============================================================================ */
+
+:root {
+  /* COLORES — modo claro (default) */
+  --bg: #FFFFFF;
+  --surface: #FAFAF9;
+  --surface-2: #F5F5F4;
+
+  --text: #0A0A0A;
+  --text-secondary: #5A5A5F;
+  --text-dim: #8A8A90;
+
+  --accent: #4A6FA5;
+  --accent-hover: #3D5A99;
+  --accent-glow: rgba(74, 111, 165, 0.35);   /* azul translúcido para sombras de hover */
+
+  --border: rgba(10, 10, 10, 0.08);
+  --border-strong: rgba(10, 10, 10, 0.15);
+
+  /* TIPOGRAFÍA */
+  --font-display: 'Poppins', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+  /* TAMAÑOS — usamos clamp(min, ideal, max) para tipografía responsiva
+     clamp() es magia: el navegador escoge el ideal, pero nunca pasa
+     del min ni del max. Adiós media queries para tamaños de letra. */
+  --fs-h1: clamp(48px, 8vw, 92px);
+  --fs-h2: clamp(32px, 4.5vw, 48px);
+  --fs-h3: 28px;
+  --fs-body: 16px;
+  --fs-small: 13px;
+  --fs-meta: 11px;
+
+  /* ESPACIADO */
+  --container-max: 1200px;
+  --container-padding: 28px;
+
+  /* TRANSICIONES */
+  --transition-fast: 0.2s ease;
+  --transition-medium: 0.3s ease;
+
+  /* RADIOS */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+}
+
+/* MODO OSCURO — sobrescribimos las variables cuando data-theme="dark" */
+[data-theme="dark"] {
+  --bg: #000000;
+  --surface: #0A0A0A;
+  --surface-2: #121212;
+
+  --text: #FFFFFF;
+  --text-secondary: #A8A8AE;
+  --text-dim: #6E6E72;
+
+  --accent: #6B8DC0;
+  --accent-hover: #8AA8D6;
+  --accent-glow: rgba(107, 141, 192, 0.45);  /* azul translúcido más fuerte para fondo oscuro */
+
+  --border: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.2);
+}
+
+
+/* ============================================================================
+   2. RESET Y BASE
+   ----------------------------------------------------------------------------
+   Eliminamos los estilos default del navegador para empezar limpio.
+============================================================================ */
+
+* {
+  box-sizing: border-box;       /* padding/border NO suman al ancho total */
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;       /* scroll suave al hacer click en anclas */
+  scroll-padding-top: 80px;      /* offset para que el navbar no tape */
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;     /* texto más suave en macOS */
+  -moz-osx-font-smoothing: grayscale;
+  transition: background var(--transition-medium), color var(--transition-medium);
+}
+
+/* Selección de texto con el color de acento */
+::selection {
+  background: var(--accent);
+  color: #FFFFFF;
+}
+
+
+/* ============================================================================
+   3. TIPOGRAFÍA
+============================================================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  color: var(--text);
+  letter-spacing: -0.025em;     /* tracking más cerrado en headings = más editorial */
+  line-height: 1.1;
+  font-weight: 500;
+}
+
+p {
+  color: var(--text);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+
+/* ============================================================================
+   4. LAYOUT
+============================================================================ */
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+}
+
+
+/* ============================================================================
+   5. NAVBAR
+============================================================================ */
+
+.nav {
+  position: sticky;              /* se queda pegado arriba al hacer scroll */
+  top: 0;
+  z-index: 100;
+  background: var(--bg);
+  backdrop-filter: blur(8px);    /* efecto glassmorphism sutil */
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px var(--container-padding);
+  transition: background var(--transition-medium), border-color var(--transition-medium);
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--text);
+}
+.logo i {
+  color: var(--accent);
+  font-style: normal;
+}
+
+.nav-links {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  list-style: none;
+}
+.nav-links a {
+  color: var(--text);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  opacity: 0.75;
+  transition: opacity var(--transition-fast), color var(--transition-fast);
+}
+.nav-links a:hover {
+  opacity: 1;
+  color: var(--accent);
+}
+
+.theme-toggle {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  transition: all var(--transition-fast);
+}
+.theme-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* HAMBURGUESA (oculta en desktop, se muestra en móvil) */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 22px;
+  height: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.nav-toggle span {
+  display: block;
+  width: 100%;
+  height: 1.5px;
+  background: var(--text);
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+
+
+/* ============================================================================
+   6. HERO
+   ----------------------------------------------------------------------------
+   El hero ahora es un contenedor "full-bleed" (todo el ancho de la ventana)
+   con un carrusel de fondo. El texto se posiciona por encima usando z-index.
+
+   ESTRUCTURA:
+   .hero (position:relative, ancho 100vw, alto fijo)
+     ├── .hero-carousel  (position:absolute, cubre todo el hero — el FONDO)
+     ├── .hero-overlay   (position:absolute, capa oscura para legibilidad)
+     └── .hero-content   (position:relative + z-index, el TEXTO encima)
+============================================================================ */
+
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 88vh;              /* alto del hero — ajusta a gusto (ej: 100vh) */
+  display: flex;
+  align-items: center;            /* centra el contenido verticalmente */
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+  padding: 100px 0;               /* respiración arriba/abajo */
+}
+
+/* Contenido del hero — va POR ENCIMA del carrusel */
+.hero-content {
+  position: relative;
+  z-index: 3;                     /* texto > overlay > carrusel */
+  color: #FFFFFF;                 /* texto blanco sobre fondo oscuro/foto */
+}
+
+.meta {
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: 0.1em;
+  margin-bottom: 24px;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h1);
+  font-weight: 500;                              /* esbelto y elegante (Poppins Medium) */
+  line-height: 0.96;
+  letter-spacing: -0.04em;
+  margin-bottom: 32px;
+  color: #FFFFFF;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);   /* sutil sombra para más legibilidad */
+}
+
+.rotate {
+  color: var(--accent);
+  display: inline-block;
+  transition: opacity var(--transition-medium);
+}
+
+.hero-lede {
+  font-size: 17px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 540px;
+  margin-bottom: 36px;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
+}
+
+.hero-cta {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* En el hero, el botón ghost vive sobre fotos oscuras → forzamos blanco */
+.hero-content .btn-ghost {
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+.hero-content .btn-ghost:hover {
+  border-color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+
+/* ============================================================================
+   6.1 CARRUSEL DEL HERO (FONDO A PANTALLA COMPLETA)
+   ----------------------------------------------------------------------------
+   - El carrusel ocupa el 100% del .hero (cubre todo el fondo)
+   - .carousel-track apila las slides en la misma posición
+   - El cambio entre slides se hace con opacidad (fade) — más suave que sliding
+   - La slide activa tiene la clase .is-active (controlada desde script.js)
+============================================================================ */
+
+.hero-carousel {
+  position: absolute;
+  inset: 0;                      /* top:0; right:0; bottom:0; left:0 */
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+  background: var(--surface-2);
+}
+
+/* OVERLAY OSCURO — mejora la legibilidad del texto sobre las fotos */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;                    /* sobre los slides, debajo de flechas/dots */
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.65) 0%,      /* lado izquierdo más oscuro (donde va el texto) */
+    rgba(0, 0, 0, 0.35) 60%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  pointer-events: none;          /* no bloquea clicks en flechas/dots */
+}
+
+.carousel-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;                      /* top:0; right:0; bottom:0; left:0 */
+  opacity: 0;
+  transform: scale(1.04);        /* sutil zoom-out al entrar */
+  transition: opacity 0.9s ease, transform 6s ease;
+  pointer-events: none;
+}
+
+.slide.is-active {
+  opacity: 1;
+  transform: scale(1);           /* el slide activo se "asienta" lentamente */
+  pointer-events: auto;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;             /* cubre todo sin deformar */
+  display: block;
+}
+
+/* FLECHAS NAVEGACIÓN ------------------------------------------------- */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(6px);
+  color: #FFFFFF;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;                    /* invisible hasta hover */
+  transition: opacity var(--transition-medium), background var(--transition-fast);
+  z-index: 3;                    /* por encima del overlay */
+}
+.carousel-arrow:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
+.carousel-prev { left: 18px; }
+.carousel-next { right: 18px; }
+
+.hero-carousel:hover .carousel-arrow {
+  opacity: 1;                    /* aparecen al pasar el mouse */
+}
+
+/* INDICADORES (PUNTOS) ----------------------------------------------- */
+.carousel-dots {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 3;                    /* por encima del overlay */
+}
+
+.dot {
+  width: 28px;
+  height: 4px;
+  border: none;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  padding: 0;
+  transition: background var(--transition-fast), width var(--transition-medium);
+}
+.dot:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+.dot.is-active {
+  background: #FFFFFF;
+  width: 40px;                   /* el activo se alarga */
+}
+
+/* RESPETAR PREFERENCIA DE REDUCIR MOVIMIENTO ------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  .slide {
+    transition: opacity 0.3s ease;
+    transform: none;
+  }
+}
+
+
+/* ============================================================================
+   7. BOTONES
+============================================================================ */
+
+.btn {
+  display: inline-block;
+  padding: 13px 22px;
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  font-family: var(--font-body);
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid var(--border-strong);
+  transition: all var(--transition-fast);
+}
+.btn-primary {
+  background: var(--accent);
+  color: #FFFFFF;
+  border-color: var(--accent);
+}
+.btn-primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--text);
+}
+.btn-ghost:hover {
+  border-color: var(--text);
+}
+
+
+/* ============================================================================
+   8. SECCIONES
+============================================================================ */
+
+.section {
+  padding: 80px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.section-num {
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  color: var(--text-secondary);
+  letter-spacing: 0.15em;
+}
+.section h2 {
+  font-size: var(--fs-h2);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  margin-top: 6px;
+  line-height: 1;
+}
+.section-link {
+  font-size: 12px;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-strong);
+  padding-bottom: 2px;
+  font-weight: 500;
+}
+.section-link:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+
+/* ============================================================================
+   9. BLOG GRID
+============================================================================ */
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.article-card {
+  display: block;                /* <a> es inline por default; lo hacemos bloque */
+  padding: 0;                    /* sin padding: la imagen va al ras del borde */
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;              /* recorta la imagen al borde redondeado */
+  cursor: pointer;
+  text-decoration: none;         /* el <a> trae subrayado, lo quitamos */
+  color: inherit;                /* hereda el color del texto (no azul de link) */
+  /* Misma animación expresiva que las cards de "Explorar por tema" */
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1.05),
+              box-shadow 0.35s ease,
+              border-color var(--transition-fast),
+              background var(--transition-medium);
+}
+.article-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-8px) scale(1.04);          /* sube + crece */
+  box-shadow: 0 22px 44px -14px var(--accent-glow); /* resplandor debajo */
+}
+
+/* MINIATURA DE LA CARD ------------------------------------------------- */
+.article-card-img-wrap {
+  width: 100%;
+  aspect-ratio: 16 / 9;          /* misma proporción que el hero del artículo */
+  background: var(--surface-2);
+  overflow: hidden;
+}
+.article-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;             /* cubre el marco sin deformarse */
+  display: block;
+}
+
+/* CONTENIDO DE LA CARD (debajo de la imagen) -------------------------- */
+.article-card-content {
+  padding: 20px 22px 24px;
+}
+
+.article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+  margin-bottom: 14px;
+}
+.article-cat {
+  color: var(--accent);
+}
+
+.article-card h3 {
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 10px;
+  letter-spacing: -0.025em;
+}
+.article-card p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+
+/* ============================================================================
+   10. CATEGORÍAS GRID
+============================================================================ */
+
+/* Flexbox en lugar de grid: con 7 categorías queda 4 arriba + 3 abajo
+   centradas (justify-content: center). El grid clásico dejaba la fila
+   incompleta alineada a la izquierda. */
+.cat-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+}
+
+.cat {
+  /* 4 cards por fila a partir de 1024px (4 × 25% - gaps).
+     A pantallas más chicas se acomodan automáticamente con el wrap. */
+  flex: 1 1 calc(25% - 14px);
+  min-width: 200px;
+  max-width: 280px;
+
+  display: flex;
+  flex-direction: column;
+  padding: 24px 22px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--text);
+  /* cubic-bezier da una curva con un toque de "pop" al final, más expresiva
+     que un ease lineal para hovers donde queremos que se sienta vivo */
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1.05),
+              box-shadow 0.35s ease,
+              border-color var(--transition-fast),
+              background var(--transition-medium);
+}
+.cat:hover {
+  border-color: var(--accent);
+  transform: translateY(-8px) scale(1.04);          /* sube + crece */
+  box-shadow: 0 22px 44px -14px var(--accent-glow); /* resplandor debajo */
+  background: var(--surface);
+}
+
+.cat-num {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+}
+.cat-name {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 8px;
+  margin-bottom: 4px;
+  letter-spacing: -0.025em;
+}
+.cat-count {
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+
+/* ============================================================================
+   11. PROYECTOS GRID
+============================================================================ */
+
+.proj-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.proj-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  cursor: pointer;
+  /* Misma animación expresiva que las cards de "Explorar por tema" */
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1.05),
+              box-shadow 0.35s ease,
+              border-color var(--transition-fast),
+              background var(--transition-medium);
+}
+.proj-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-8px) scale(1.04);          /* sube + crece */
+  box-shadow: 0 22px 44px -14px var(--accent-glow); /* resplandor debajo */
+}
+
+.proj-img {
+  aspect-ratio: 16 / 10;
+  background: var(--surface-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+  border-bottom: 1px solid var(--border);
+}
+
+.proj-body {
+  padding: 20px 22px;
+}
+.proj-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+}
+.proj-card h3 {
+  font-size: 19px;
+  font-weight: 600;
+  margin-top: 6px;
+  margin-bottom: 4px;
+  letter-spacing: -0.025em;
+}
+.proj-card p {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+
+/* ============================================================================
+   12. SOBRE MÍ
+============================================================================ */
+
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.about-photo {
+  aspect-ratio: 4 / 5;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;              /* recorta la imagen al borde redondeado */
+}
+
+.about-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;             /* la foto cubre todo sin deformarse */
+  display: block;
+}
+
+.about-text h3 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 18px;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+.about-text p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+}
+.quote {
+  border-left: 2px solid var(--accent);
+  padding-left: 18px;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--text);
+  margin-top: 24px;
+  letter-spacing: -0.02em;
+}
+
+
+/* ============================================================================
+   13. CURSOS
+============================================================================ */
+
+.courses {
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  padding: 48px 36px;
+  text-align: center;
+}
+
+.courses-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--accent);
+  letter-spacing: 0.15em;
+  padding: 5px 11px;
+  border: 1px solid var(--accent);
+  border-radius: 100px;
+  margin-bottom: 16px;
+}
+
+.courses h3 {
+  font-size: clamp(28px, 4vw, 38px);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  margin-bottom: 12px;
+  line-height: 1.05;
+}
+
+.courses p {
+  color: var(--text-secondary);
+  max-width: 460px;
+  margin: 0 auto 24px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.email-form {
+  display: flex;
+  gap: 8px;
+  max-width: 380px;
+  margin: 0 auto;
+}
+.email-form input {
+  flex: 1;
+  padding: 11px 14px;
+  background: var(--bg);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 13px;
+  transition: border-color var(--transition-fast);
+}
+.email-form input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+
+/* ============================================================================
+   14. CONTACTO
+============================================================================ */
+
+.contact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+
+.contact-info h3 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+.contact-info p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+.contact-email {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--accent);
+}
+
+.social {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.social a {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text);
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  display: flex;
+  justify-content: space-between;
+  /* Misma curva expresiva que las cards, valores más suaves porque
+     son barras anchas y delgadas (no cards cuadradas). */
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1.05),
+              box-shadow 0.35s ease,
+              border-color var(--transition-fast),
+              color var(--transition-fast);
+}
+.social a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-4px) scale(1.02);          /* lift y crecimiento suaves */
+  box-shadow: 0 16px 32px -12px var(--accent-glow); /* resplandor debajo */
+}
+
+/* Nombre de la red + su icono, agrupados a la izquierda del enlace */
+.social-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.social-icon {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;                /* el icono nunca se aplasta */
+  /* fill="currentColor" en el SVG hace que herede el color del texto,
+     así cambia a azul en hover sin CSS extra */
+}
+
+
+/* ============================================================================
+   15. FOOTER
+============================================================================ */
+
+.footer {
+  border-top: 1px solid var(--border);
+}
+.footer-inner {
+  padding: 28px var(--container-padding);
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+}
+
+
+/* ============================================================================
+   15.5 PÁGINA DE ARTÍCULO
+   ----------------------------------------------------------------------------
+   Estilos para /articulos/<slug>.html. La idea es priorizar la LECTURA:
+   - Ancho máximo cómodo (~720px) — más allá de eso la línea cansa la vista
+   - Tipografía generosa, line-height amplio
+   - Jerarquía clara entre h1, h2, h3, párrafos y citas
+============================================================================ */
+
+.article-page {
+  /* Espacio entre el navbar sticky y el primer contenido del artículo */
+  padding-top: 16px;
+}
+
+/* HEADER DEL ARTÍCULO ------------------------------------------------- */
+.article-header {
+  padding: 16px 0 24px;
+  text-align: center;            /* centra todo el contenido del header */
+}
+
+.article-back {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  transition: color var(--transition-fast);
+}
+.article-back:hover {
+  color: var(--accent);
+}
+
+.article-meta-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;       /* centra los chips de categoría · fecha · tiempo */
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  margin-bottom: 16px;
+}
+.article-category {
+  color: var(--accent);
+}
+.article-meta-sep {
+  color: var(--text-dim);
+  opacity: 0.5;
+}
+
+.article-title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5.5vw, 64px);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  margin: 0 auto 16px;           /* margin auto para centrar */
+  max-width: 880px;
+}
+
+.article-lede {
+  font-family: var(--font-body);
+  font-size: clamp(18px, 2vw, 22px);
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 0 auto;                /* centrado */
+  max-width: 680px;
+}
+
+/* IMAGEN PRINCIPAL DEL ARTÍCULO --------------------------------------- */
+.article-hero {
+  max-width: 1100px;
+  margin: 28px auto 0;
+  padding: 0 var(--container-padding);
+}
+
+.article-hero img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-md);
+  aspect-ratio: 16 / 9;          /* fija proporción para que TODOS los hero se vean iguales */
+  object-fit: cover;             /* cubre el marco sin deformar la foto */
+}
+
+.article-hero figcaption {
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  text-align: center;
+  margin-top: 14px;
+}
+
+/* CUERPO DEL ARTÍCULO ------------------------------------------------- */
+.article-body {
+  padding: 56px 0;
+}
+
+/* Limitamos el ancho de TODO el contenido del cuerpo para mejorar la
+   experiencia de lectura. ~720px es el sweet spot para 60-75 caracteres por línea. */
+.article-body .container {
+  max-width: 720px;
+}
+
+.article-body p {
+  font-size: 18px;
+  line-height: 1.75;
+  color: var(--text);
+  margin-bottom: 1.4em;
+}
+
+.article-body h2 {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  margin-top: 2.2em;
+  margin-bottom: 0.7em;
+}
+
+.article-body h3 {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2.4vw, 24px);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin-top: 1.8em;
+  margin-bottom: 0.6em;
+}
+
+.article-body blockquote {
+  border-left: 2px solid var(--accent);
+  padding: 6px 0 6px 24px;
+  margin: 1.8em 0;
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2.4vw, 24px);
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: -0.015em;
+  color: var(--text);
+}
+
+.article-body ul,
+.article-body ol {
+  margin: 0 0 1.4em 1.5em;
+  font-size: 18px;
+  line-height: 1.75;
+  color: var(--text);
+}
+.article-body li {
+  margin-bottom: 0.5em;
+}
+.article-body li::marker {
+  color: var(--accent);
+}
+
+.article-body a {
+  color: var(--accent);
+  border-bottom: 1px solid var(--accent);
+  transition: opacity var(--transition-fast);
+}
+.article-body a:hover {
+  opacity: 0.7;
+}
+
+.article-body strong {
+  font-weight: 600;
+  color: var(--text);
+}
+.article-body em {
+  font-style: italic;
+}
+
+.article-body code {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  background: var(--surface-2);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  color: var(--text);
+}
+.article-body pre {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+  overflow-x: auto;
+  margin: 1.6em 0;
+  line-height: 1.55;
+}
+.article-body pre code {
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+}
+
+.article-body img,
+.article-body figure {
+  display: block;
+  width: 100%;
+  margin: 1.8em 0;
+  border-radius: var(--radius-md);
+}
+.article-body figcaption {
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+  text-align: center;
+  margin-top: 12px;
+}
+
+.article-body hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2.4em auto;
+  width: 80px;
+}
+
+/* BOTONES DE COMPARTIR EN REDES --------------------------------------- */
+.article-share {
+  border-top: 1px solid var(--border);
+  padding: 36px 0;
+}
+.article-share .container {
+  max-width: 720px;              /* mismo ancho de lectura que el cuerpo */
+}
+.article-share-label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: 0.15em;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+.article-share-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.share-btn {
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  letter-spacing: 0.05em;
+  padding: 10px 18px;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;          /* forma de píldora */
+  color: var(--text);
+  transition: all var(--transition-fast);
+}
+.share-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* FOOTER DEL ARTÍCULO — SOBRE EL AUTOR -------------------------------- */
+.article-footer {
+  border-top: 1px solid var(--border);
+  padding: 56px 0 80px;
+  background: var(--surface);
+}
+.article-footer .container {
+  max-width: 720px;
+}
+
+.article-author-tag {
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: 0.15em;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+.article-author h3 {
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  margin-bottom: 10px;
+}
+
+.article-author p {
+  color: var(--text-secondary);
+  font-size: 15px;
+  margin-bottom: 16px;
+}
+
+.article-author-link {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  color: var(--accent);
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 2px;
+}
+
+
+/* ============================================================================
+   15.6 PÁGINA DE ARCHIVO (articulos.html) — LISTADO + FILTRO
+   ----------------------------------------------------------------------------
+   La página de "todos los artículos" usa una vista LISTA en lugar de grid:
+   miniatura a la izquierda, contenido a la derecha. Arriba están las
+   pestañas de filtro por categoría.
+============================================================================ */
+
+.archive-page {
+  padding-top: 16px;
+}
+
+/* HEADER (título de la página) ---------------------------------------- */
+.archive-header {
+  padding: 32px 0 32px;
+  border-bottom: 1px solid var(--border);
+}
+
+.archive-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: 0.15em;
+  color: var(--text-secondary);
+  margin: 24px 0 12px;
+}
+
+.archive-title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5.5vw, 64px);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  margin-bottom: 16px;
+}
+
+.archive-lede {
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  max-width: 680px;
+}
+
+/* PESTAÑAS DE FILTRO -------------------------------------------------- */
+.archive-tabs-wrap {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+  position: sticky;                /* las pestañas se quedan pegadas al hacer scroll */
+  top: 64px;                       /* debajo del navbar */
+  background: var(--bg);
+  z-index: 50;
+  transition: background var(--transition-medium);
+}
+
+.archive-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tab {
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: 0.12em;
+  padding: 8px 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;            /* pill shape */
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.tab:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.tab.is-active {
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--bg);
+}
+
+/* LISTA DE ARTÍCULOS -------------------------------------------------- */
+.archive-list-wrap {
+  padding: 32px 0 80px;
+}
+
+.archive-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.article-row {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 24px;
+  align-items: stretch;
+  padding: 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  transition: all var(--transition-medium);
+}
+.article-row:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.article-row-img-wrap {
+  aspect-ratio: 16 / 9;
+  background: var(--surface-2);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+.article-row-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.article-row:hover .article-row-img {
+  transform: scale(1.04);
+}
+
+.article-row-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.article-row-content .article-meta {
+  margin-bottom: 10px;
+}
+
+.article-row-content h3 {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  margin-bottom: 8px;
+}
+
+.article-row-content p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* Mensaje cuando no hay resultados */
+.archive-empty {
+  text-align: center;
+  padding: 48px 0;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  letter-spacing: 0.08em;
+}
+
+
+/* ============================================================================
+   16. RESPONSIVE — MEDIA QUERIES
+   ----------------------------------------------------------------------------
+   Breakpoints estándar:
+   - 1024px: tablets en horizontal y laptops pequeñas
+   - 768px: tablets en vertical
+   - 480px: móviles
+============================================================================ */
+
+@media (max-width: 1024px) {
+  .about,
+  .contact {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .about-photo {
+    max-width: 360px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --container-padding: 20px;
+  }
+
+  .hero {
+    padding: 60px 0 60px;
+  }
+
+  .section {
+    padding: 60px 0;
+  }
+
+  /* Ajustes a la página de artículo en móvil */
+  .article-header {
+    padding: 12px 0 16px;
+  }
+  .article-body {
+    padding: 32px 0 40px;
+  }
+
+  /* Ajustes a la página de archivo en móvil */
+  .archive-tabs-wrap {
+    position: static;            /* en móvil no las dejamos sticky para no robar espacio */
+  }
+  .article-row {
+    grid-template-columns: 1fr;  /* imagen arriba, texto abajo */
+    gap: 16px;
+  }
+  .article-row-img-wrap {
+    aspect-ratio: 16 / 9;
+  }
+  .article-body p,
+  .article-body ul,
+  .article-body ol {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+  .article-footer {
+    padding: 40px 0 60px;
+  }
+
+  /* Mostrar hamburguesa, ocultar nav-links horizontal */
+  .nav-toggle {
+    display: flex;
+    z-index: 101;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;          /* fuera de pantalla por default */
+    width: 80%;
+    max-width: 320px;
+    height: 100vh;
+    background: var(--bg);
+    border-left: 1px solid var(--border);
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 28px;
+    padding: 60px 32px;
+    transition: right var(--transition-medium);
+    z-index: 100;
+  }
+
+  .nav-links.is-open {
+    right: 0;              /* entra cuando tiene la clase is-open */
+  }
+
+  .nav-links a {
+    font-size: 18px;
+    opacity: 1;
+  }
+
+  /* Animación de hamburguesa a "X" cuando está activa */
+  .nav-toggle.is-active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .nav-toggle.is-active span:nth-child(2) {
+    opacity: 0;
+  }
+  .nav-toggle.is-active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 48px 0 56px;
+  }
+
+  .section {
+    padding: 48px 0;
+  }
+
+  .section-head {
+    margin-bottom: 32px;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-cta .btn {
+    text-align: center;
+  }
+
+  .courses {
+    padding: 32px 24px;
+  }
+
+  .email-form {
+    flex-direction: column;
+  }
+}
+
+
+/* ============================================================================
+   17. UTILIDADES
+============================================================================ */
+
+/* Animación fade-in al cargar la página */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Accesibilidad — visualmente oculto pero accesible para screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Respeta la preferencia del usuario de "menos animaciones" */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<!--
+=================================================================================
+  PLANTILLA DE ARTÍCULO — ARQENRIQUEZ.COM
+  -------------------------------------------------------------------------------
+  CÓMO USAR ESTA PLANTILLA:
+    1. Duplica este archivo.
+    2. Muévelo a la carpeta /articulos/ con el nombre <slug>.html
+       (mismo slug que pones en /data/articulos.js)
+    3. Edita los puntos marcados con  ✏️  abajo.
+    4. Añade la entrada correspondiente en /data/articulos.js
+       (los nuevos arriba del array para que aparezcan primero).
+
+  ZONAS QUE DEBES EDITAR (busca el emoji ✏️):
+    - <title>                          ✏️ título + " · Jorge Enríquez"
+    - <meta name="description">        ✏️ resumen del artículo
+    - <meta property="og:title">       ✏️ mismo título
+    - <meta property="og:description"> ✏️ mismo resumen
+    - .article-category                ✏️ categoría en MAYÚSCULAS
+    - .article-date                    ✏️ fecha legible (ej: "13 MAY 2026")
+    - .article-read                    ✏️ tiempo de lectura (ej: "8 MIN")
+    - <h1 class="article-title">       ✏️ título del artículo
+    - <p class="article-lede">         ✏️ bajada / resumen del artículo
+    - <div class="article-body">       ✏️ contenido del artículo (todo el cuerpo)
+=================================================================================
+-->
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ✏️ TÍTULO DEL ARTÍCULO + nombre del autor -->
+  <title>Meditación sobre la existencia de Dios  · Jorge Enríquez</title>
+  <!-- ✏️ RESUMEN para SEO y para compartir en redes -->
+  <meta name="description" content="¿Existe Dios? Una reflexión personal sobre la fe">
+  <meta name="author" content="Jorge Enríquez">
+
+  <!-- Open Graph (cuando alguien lo comparte en WhatsApp, LinkedIn, etc.) -->
+  <meta property="og:title" content="Meditación sobre la existencia de Dios · Jorge Enríquez">
+  <meta property="og:description" content="¿Existe Dios? Una reflexión personal sobre la fe">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="es_MX">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Meditación sobre la existencia de Dios · Jorge Enríquez">
+  <meta name="twitter:description" content="¿Existe Dios? Una reflexión personal sobre la fe">
+
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Estilos (ojo: ../ porque este archivo está dentro de /articulos/) -->
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+
+  <!-- ====================================================================
+       NAVBAR (mismo que la portada, pero los enlaces apuntan a ../index.html)
+  ===================================================================== -->
+  <nav class="nav" aria-label="Navegación principal">
+    <a href="../index.html" class="logo" aria-label="Inicio · Jorge Enríquez">
+      arq<i>·</i>enriquez
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="../index.html#blog">Blog</a></li>
+      <li><a href="../index.html#proyectos">Proyectos</a></li>
+      <li><a href="../index.html#sobre">Sobre mí</a></li>
+      <li><a href="../index.html#cursos">Cursos</a></li>
+      <li><a href="../index.html#contacto">Contacto</a></li>
+      <li>
+        <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema oscuro/claro" title="Cambiar tema">
+          <span class="theme-icon">◐</span>
+        </button>
+      </li>
+    </ul>
+  </nav>
+
+
+  <!-- ====================================================================
+       ARTÍCULO
+  ===================================================================== -->
+  <main>
+    <article class="article-page">
+
+      <!-- HEADER DEL ARTÍCULO ============================================ -->
+      <header class="article-header">
+        <div class="container">
+          <a href="../index.html#blog" class="article-back">← Volver al blog</a>
+
+          <p class="article-meta-line">
+            <!-- ✏️ CATEGORÍA -->
+            <span class="article-category">TEOLOGÍA</span>
+            <span class="article-meta-sep">·</span>
+            <!-- ✏️ FECHA LEGIBLE -->
+            <span class="article-date">13 MAY 2026</span>
+            <span class="article-meta-sep">·</span>
+            <!-- ✏️ TIEMPO DE LECTURA -->
+            <span class="article-read">5 MIN</span>
+          </p>
+
+          <!-- ✏️ TÍTULO DEL ARTÍCULO -->
+          <h1 class="article-title">Meditación sobre la existencia de Dios</h1>
+
+          <!-- ✏️ BAJADA / SUBTÍTULO / RESUMEN -->
+          <p class="article-lede">
+          Con Él, todo tiene sentido; sin Él, la existencia es absurda.
+          </p>
+        </div>
+      </header>
+
+
+      <!-- IMAGEN PRINCIPAL DEL ARTÍCULO -->
+      <figure class="article-hero">
+        <img src="../assets/images/articulos/meditacion-sobre-la-existencia-de-dios.jpg" alt="Vitral o luz contemplativa">
+      </figure>
+
+
+      <!-- CUERPO DEL ARTÍCULO ============================================
+           Aquí va el contenido. Las etiquetas disponibles son:
+             <p>            párrafo normal
+             <h2>           sección
+             <h3>           subsección
+             <blockquote>   cita destacada
+             <ul>/<ol>      listas
+             <a href="">    enlaces
+             <strong>       énfasis fuerte (negrita)
+             <em>           énfasis sutil (cursiva)
+             <code>         fragmento de código en línea
+             <pre><code>    bloque de código
+             <img src="" alt="">  imagen
+             <figure><figcaption> imagen con leyenda
+           Todas tienen estilo automático — no necesitas añadir clases.
+      ================================================================ -->
+      <div class="article-body">
+        <div class="container">
+
+          <!-- ✏️ EMPIEZA AQUÍ EL CONTENIDO DE TU ARTÍCULO -->
+
+          <p>
+            No hay tema que no haya sido más recurrente en mi cabeza 
+            que el de la existencia de Dios.
+          </p>
+
+          <h2><em>Con Él, todo tiene sentido; sin Él, la existencia es absurda.</em></h2>
+
+          <p>
+            Que increíble es que por mas que busquemos, no haya una evidencia científica 
+            de la existencia de Dios. Pero también, es de notar que, no hemos logrado 
+            un sistema lógico y científico completo, que abarque todo. Siempre falta un 
+            último hito, un último momento que unifique y totalice todo el conocimiento humano. 
+            Ni en matemáticas, ni en astrofísica se llega aún consenso absoluto.
+          </p>
+          <p>
+            Y es que Dios parecerá ocultarse totalmente de la razón y la ciencia y esconderse 
+            en otros aspectos de la experiencia humana. Para algunos, es tan real como el aire, 
+            y para otros, es solo un delirio de la imaginación mitológica que nace desde los 
+            orígenes mismos de la humanidad y que no hemos podido superar. Y a ambas maneras 
+            de pensar los separa un enorme abismo, prácticamente infranqueable.
+          </p>
+
+          <h2>Si se está en uno de los dos extremos, no hay argumento o invitación que convenza 
+            a pasarse al otro lado.</h2>
+
+          <p>
+            Si se está en uno de los dos extremos, no hay argumento o invitación que convenza 
+            a pasarse al otro lado. <strong> Se necesitaría cambiar rotundamente de idioma,</strong>
+             o de forma de comunicación.
+          </p>  
+
+          <p>
+            Ahí es donde reparo en qué, <em>¡cómo me gustaría poder expresarme en ambos lenguajes! </em>
+            <strong>¡Cómo me gustaría saltar esas barreras cognitivas que tenemos y unir a ambos 
+              lados del abismo!</strong>
+          </p>
+
+          <p>
+            Sin embargo, es una tarea que me rebasa. Me queda esperar a que sirgan grandes pensadores 
+            que sean capaces de lograrlo.
+          </p>
+
+          <blockquote>
+            Mientras tanto, sigo en mis meditaciones.
+          </blockquote>
+
+          <!-- ✏️ TERMINA AQUÍ EL CONTENIDO -->
+
+        </div>
+      </div>
+
+
+      <!-- BLOQUE FINAL — SOBRE EL AUTOR ================================== -->
+      <footer class="article-footer">
+        <div class="container">
+          <div class="article-author">
+            <p class="article-author-tag">ESCRITO POR</p>
+            <h3>Jorge Enríquez</h3>
+            <p>Arquitecto, Blogger, polímata. Construyo espacios y pienso en voz alta.</p>
+            <a href="../index.html#sobre" class="article-author-link">Saber más sobre mí →</a>
+          </div>
+        </div>
+      </footer>
+
+    </article>
+  </main>
+
+
+  <!-- ====================================================================
+       FOOTER (mismo que la portada)
+  ===================================================================== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© <span id="currentYear">2026</span> · JORGE ENRÍQUEZ</p>
+      <p>HECHO CON INTENCIÓN</p>
+    </div>
+  </footer>
+
+
+  <!-- ====================================================================
+       JAVASCRIPT (mismo que la portada)
+  ===================================================================== -->
+  <script src="../js/script.js" defer></script>
+
+</body>
+</html>

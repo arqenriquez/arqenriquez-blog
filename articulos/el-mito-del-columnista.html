@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<!--
+=================================================================================
+  PLANTILLA DE ARTÍCULO — ARQENRIQUEZ.COM
+  -------------------------------------------------------------------------------
+  CÓMO USAR ESTA PLANTILLA:
+    1. Duplica este archivo.
+    2. Muévelo a la carpeta /articulos/ con el nombre <slug>.html
+       (mismo slug que pones en /data/articulos.js)
+    3. Edita los puntos marcados con  ✏️  abajo.
+    4. Añade la entrada correspondiente en /data/articulos.js
+       (los nuevos arriba del array para que aparezcan primero).
+
+  ZONAS QUE DEBES EDITAR (busca el emoji ✏️):
+    - <title>                          ✏️ título + " · Jorge Enríquez"
+    - <meta name="description">        ✏️ resumen del artículo
+    - <meta property="og:title">       ✏️ mismo título
+    - <meta property="og:description"> ✏️ mismo resumen
+    - .article-category                ✏️ categoría en MAYÚSCULAS
+    - .article-date                    ✏️ fecha legible (ej: "13 MAY 2026")
+    - .article-read                    ✏️ tiempo de lectura (ej: "8 MIN")
+    - <h1 class="article-title">       ✏️ título del artículo
+    - <p class="article-lede">         ✏️ bajada / resumen del artículo
+    - <div class="article-body">       ✏️ contenido del artículo (todo el cuerpo)
+=================================================================================
+-->
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ✏️ TÍTULO DEL ARTÍCULO + nombre del autor -->
+  <title>El mito del columnista, y por qué en México casi no existe · Jorge Enríquez</title>
+  <!-- ✏️ RESUMEN para SEO y para compartir en redes -->
+  <meta name="description" content="Si quieres hablar de ideas, probablemente tendrás que hacerlo gratis.
+Y si quieres vivir de ello, mejor dedícate a otra cosa.">
+  <meta name="author" content="Jorge Enríquez">
+
+  <!-- Open Graph (cuando alguien lo comparte en WhatsApp, LinkedIn, etc.) -->
+  <meta property="og:title" content="El mito del columnista, y por qué en México casi no existe · Jorge Enríquez">
+  <meta property="og:description" content="Si quieres hablar de ideas, probablemente tendrás que hacerlo gratis.
+Y si quieres vivir de ello, mejor dedícate a otra cosa.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="es_MX">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="El mito del columnista, y por qué en México casi no existe · Jorge Enríquez">
+  <meta name="twitter:description" content="Si quieres hablar de ideas, probablemente tendrás que hacerlo gratis.
+Y si quieres vivir de ello, mejor dedícate a otra cosa.">
+
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Estilos (ojo: ../ porque este archivo está dentro de /articulos/) -->
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+
+  <!-- ====================================================================
+       NAVBAR (mismo que la portada, pero los enlaces apuntan a ../index.html)
+  ===================================================================== -->
+  <nav class="nav" aria-label="Navegación principal">
+    <a href="../index.html" class="logo" aria-label="Inicio · Jorge Enríquez">
+      arq<i>·</i>enriquez
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="../index.html#blog">Blog</a></li>
+      <li><a href="../index.html#proyectos">Proyectos</a></li>
+      <li><a href="../index.html#sobre">Sobre mí</a></li>
+      <li><a href="../index.html#cursos">Cursos</a></li>
+      <li><a href="../index.html#contacto">Contacto</a></li>
+      <li>
+        <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema oscuro/claro" title="Cambiar tema">
+          <span class="theme-icon">◐</span>
+        </button>
+      </li>
+    </ul>
+  </nav>
+
+
+  <!-- ====================================================================
+       ARTÍCULO
+  ===================================================================== -->
+  <main>
+    <article class="article-page">
+
+      <!-- HEADER DEL ARTÍCULO ============================================ -->
+      <header class="article-header">
+        <div class="container">
+          <a href="../index.html#blog" class="article-back">← Volver al blog</a>
+
+          <p class="article-meta-line">
+            <!-- ✏️ CATEGORÍA -->
+            <span class="article-category">RANDOM</span>
+            <span class="article-meta-sep">·</span>
+            <!-- ✏️ FECHA LEGIBLE -->
+            <span class="article-date">13 MAY 2026</span>
+            <span class="article-meta-sep">·</span>
+            <!-- ✏️ TIEMPO DE LECTURA -->
+            <span class="article-read">8 MIN</span>
+          </p>
+
+          <!-- ✏️ TÍTULO DEL ARTÍCULO -->
+          <h1 class="article-title">El mito del columnista, y por qué en México casi no existe</h1>
+
+          <!-- ✏️ BAJADA / SUBTÍTULO / RESUMEN -->
+          <p class="article-lede">
+            Si quieres hablar de ideas, probablemente tendrás que hacerlo gratis.<br>
+            Y si quieres vivir de ello, mejor dedícate a otra cosa."
+          </p>
+        </div>
+      </header>
+
+
+      <!-- ================================================================
+           IMAGEN PRINCIPAL DEL ARTÍCULO (HERO)
+           ----------------------------------------------------------------
+           ✏️ Reemplaza el src con el slug del artículo:
+              ../assets/images/articulos/<slug>.jpg
+           ✏️ Edita el alt con una descripción accesible (1 frase).
+           ✏️ Si NO quieres imagen en este artículo, elimina todo el <figure>.
+
+           CONVENCIÓN PARA GUARDAR LA IMAGEN:
+             - Carpeta:  /assets/images/articulos/
+             - Nombre:   <slug>.jpg   (mismo slug del artículo, en kebab-case)
+             - Tamaño ideal: 1600 × 900 px (proporción 16:9, horizontal)
+             - Peso:     menos de 300 KB (comprime con tinypng.com)
+      ================================================================ -->
+      <figure class="article-hero">
+        <img src="../assets/images/articulos/el-mito-del-columnista.jpg" alt="Periódico abierto sobre una mesa">
+      </figure>
+
+
+      <!-- CUERPO DEL ARTÍCULO ============================================
+           Aquí va el contenido. Las etiquetas disponibles son:
+             <p>            párrafo normal
+             <h2>           sección
+             <h3>           subsección
+             <blockquote>   cita destacada
+             <ul>/<ol>      listas
+             <a href="">    enlaces
+             <strong>       énfasis fuerte (negrita)
+             <em>           énfasis sutil (cursiva)
+             <code>         fragmento de código en línea
+             <pre><code>    bloque de código
+             <img src="" alt="">  imagen
+             <figure><figcaption> imagen con leyenda
+           Todas tienen estilo automático — no necesitas añadir clases.
+      ================================================================ -->
+      <div class="article-body">
+        <div class="container">
+
+          <!-- ✏️ EMPIEZA AQUÍ EL CONTENIDO DE TU ARTÍCULO -->
+
+          
+           <h1>El mito del columnista / autor y por qué en México casi no existe</h1>
+          <p></p>
+          <p>
+          Existe una figura muy particular que aparece constantemente en películas, 
+          series y novelas norteamericanas: el escritor intelectual que vive de sus ideas. 
+          El periodista que publica columnas semanales, escribe ensayos, reflexiona 
+          sobre cultura, tecnología o filosofía, y eventualmente publica sus propios libros.
+          </p>
+
+          <p>
+          Casi siempre vive en Nueva York. Tiene una biblioteca enorme, una máquina de 
+          escribir o una laptop minimalista, café caliente sobre el escritorio y una vida 
+          aparentemente dedicada a pensar.
+          </p>
+
+          <p>
+          Es una idea profundamente romántica.
+          </p>
+
+          <p>
+          Y también, <em>-al menos desde México o Latinoamérica-</em> una idea extrañamente
+           lejana.
+          </p>
+
+          <h2>El problema no es que aquí no existan escritores</h2>
+
+          <p>
+          México sí tiene autores. Y también tiene columnistas.
+          </p>
+
+          <p>
+          El problema es otro: <em>casi todos orbitan alrededor de la 
+            <strong>política.</strong></em>
+          </p>
+
+          <p>
+          La mayoría de los espacios “serios” de opinión pública están dedicados al 
+          análisis político, la coyuntura electoral, el conflicto ideológico o, en 
+          muchos casos, al <strong>narcotráfico y la violencia</strong>. Y aunque esos temas son 
+          importantes, terminan absorbiendo prácticamente toda la conversación 
+          intelectual visible.
+          </p>
+
+          <p>
+          Mientras tanto, otros temas parecen quedarse fuera del radar: la divulgación 
+          científica, la filosofía cotidiana, la tecnología, el urbanismo, la cultura 
+          digital o simplemente el pensamiento contemporáneo en general. Especialmente 
+          entre gente joven.
+          </p>
+
+          <p>
+          Porque sí existen personas interesadas en esos temas. Lo raro es encontrarlas 
+          viviendo profesionalmente de escribir sobre ellos.
+          </p>
+
+          <h2>Los nuevos autores ya no vienen del periodismo tradicional</h2>
+          <p>
+          Curiosamente, algunas de las figuras más cercanas a ese modelo intelectual 
+          contemporáneo no salieron de periódicos ni revistas tradicionales.
+          </p>
+          <p>
+          Aparecieron desde internet.
+          </p>
+          <p>
+          Casos como <em>Roberto Martínez</em> o <em>Farid Dieck</em> construyeron 
+          audiencia directamente desde podcasts, YouTube o redes sociales. Primero 
+          crearon comunidad. Después llegaron los libros.
+          </p>
+          <p>
+          Eso ya dice mucho sobre el estado actual del ecosistema cultural en México.
+          </p>
+          <p>
+          Hoy parece más viable construir una carrera intelectual desde un micrófono 
+          y una cámara que desde una columna editorial.
+          </p>
+          <p>
+          Y quizá eso no sea necesariamente malo.
+          </p>
+
+          <h2>En Estados Unidos sí existe un mercado para las ideas</h2>
+          <p>
+          Cuando uno observa el panorama estadounidense, el contraste es muy evidente.
+          </p>
+          <p>
+          Figuras como <strong>Cal Newport</strong>, <strong>Malcolm Gladwell</strong> 
+          o <strong>Ryan Holiday</strong> han logrado construir carreras enteras 
+          alrededor de escribir, investigar y conectar ideas.
+          </p>
+          <p>
+          No viven solamente de <em>"opinar"</em>. Viven de pensar.
+          </p>
+          <p>
+          Y eso es posible porque existe toda una infraestructura cultural que sostiene 
+          ese tipo de trabajo: editoriales fuertes, revistas especializadas, newsletters, 
+          podcasts, universidades y, sobre todo, una audiencia dispuesta a pagar por 
+          pensamiento de largo aliento.
+          </p>
+
+          <p>
+          En Latinoamérica, en cambio, muchas veces pareciera que las ideas tienen poco 
+          valor económico… a menos que generen <em>conflicto inmediato</em>.
+          </p>
+
+          <blockquote>
+          <p>
+          “En México sí hay escritores. Lo raro es encontrar espacios donde pensar 
+          tenga valor por sí mismo.”
+          </p>
+          </blockquote>
+
+          <h2>El ecosistema empuja a elegir entre política o invisibilidad</h2>
+          <p>
+          Tal vez la consecuencia más interesante de todo esto es que muchos jóvenes 
+          terminan recibiendo un mensaje implícito:
+          </p>
+          <p>
+          Si quieres ser tomado en serio, habla de política.<br>
+          Si quieres hablar de ideas, probablemente tendrás que hacerlo gratis.<br>
+          Y si quieres vivir de ello, <em>mejor dedícate a otra cosa</em>.
+          </p>
+          <p>
+          Eso termina moldeando la cultura intelectual completa.
+          </p>
+          <p>
+          Porque no solo afecta a quienes escriben. También afecta a quienes leen. 
+          Poco a poco, la conversación pública se acostumbra a consumir únicamente 
+          reacción inmediata: escándalo, opinión rápida, conflicto y polarización.
+          </p>
+          <p>
+          Pensar despacio y profundo deja de ser rentable.
+          </p>
+
+          <h2>Tal vez el problema no sea la falta de talento</h2>
+
+          <p>
+          Sería fácil concluir que en México simplemente “no hay nivel” para 
+          desarrollar ese tipo de figuras intelectuales contemporáneas. 
+          Pero probablemente eso sería falso.
+          </p>
+          <p>
+          El talento existe. La curiosidad también.
+          </p>
+          <p>
+          Lo que parece faltar es un ecosistema que premie la profundidad y no 
+          únicamente la inmediatez. Y quizá por eso internet representa una 
+          oportunidad interesante: por primera vez, alguien puede construir una 
+          audiencia sin pedir permiso a un periódico o una televisora.
+          </p>
+
+          <h2>¿Qué tendríamos que estar haciendo?</h2>
+          <p>
+          Tal vez la pregunta importante ya no es por qué no existen más 
+          columnistas–autores en México, sino qué tipo de cultura intelectual 
+          queremos construir de ahora en adelante.
+          </p>
+          <p>
+          Porque probablemente no se trata de copiar el modelo americano, sino de 
+          construir algo propio: leer con más seriedad, escribir con paciencia, 
+          pensar con rigor y crear espacios donde las ideas puedan existir sin 
+          convertirse inmediatamente en pelea política.
+          </p>
+          <p>
+          No suena tan cinematográfico.<br>
+          Pero quizá sea más necesario.
+          </p>
+          <!-- ✏️ TERMINA AQUÍ EL CONTENIDO -->
+
+        </div>
+      </div>
+
+
+      <!-- BLOQUE FINAL — SOBRE EL AUTOR ================================== -->
+      <footer class="article-footer">
+        <div class="container">
+          <div class="article-author">
+            <p class="article-author-tag">ESCRITO POR</p>
+            <h3>Jorge Enríquez</h3>
+            <p>Arquitecto, escritor, polímata. Construyo espacios y pienso en voz alta.</p>
+            <a href="../index.html#sobre" class="article-author-link">Saber más sobre mí →</a>
+          </div>
+        </div>
+      </footer>
+
+    </article>
+  </main>
+
+
+  <!-- ====================================================================
+       FOOTER (mismo que la portada)
+  ===================================================================== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© <span id="currentYear">2026</span> · JORGE ENRÍQUEZ</p>
+      <p>HECHO CON INTENCIÓN</p>
+    </div>
+  </footer>
+
+
+  <!-- ====================================================================
+       JAVASCRIPT (mismo que la portada)
+  ===================================================================== -->
+  <script src="../js/script.js" defer></script>
+
+</body>
+</html>
