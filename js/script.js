@@ -87,7 +87,7 @@
        Slide 3 (Hero 3) → "Fe en Dios"  ← cierra el ciclo y vuelve a "voz alta"
   ========================================================================== */
 
-  const words = ['voz alta', 'Arquitectura', 'Sistemas', 'Código', 'IA', 'Fe en Dios'];
+  const words = ['voz alta', 'Arquitectura', 'Sistemas', 'Código', 'IA', 'Mi fe en Dios'];
   const rotateEl = document.getElementById('rotateWord');
   const WORD_INTERVAL_MS = 2800;
   const WORDS_PER_SLIDE = 2;        // cada N cambios de palabra, avanza el slide

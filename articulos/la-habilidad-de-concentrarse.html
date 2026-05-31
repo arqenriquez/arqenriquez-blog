@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<!--
+=================================================================================
+  PLANTILLA DE ARTÍCULO — ARQENRIQUEZ.COM
+  -------------------------------------------------------------------------------
+  CÓMO USAR ESTA PLANTILLA:
+    1. Duplica este archivo.
+    2. Muévelo a la carpeta /articulos/ con el nombre <slug>.html
+       (mismo slug que pones en /data/articulos.js)
+    3. Edita los puntos marcados con  ✏️  abajo.
+    4. Añade la entrada correspondiente en /data/articulos.js
+       (los nuevos arriba del array para que aparezcan primero).
+
+  ZONAS QUE DEBES EDITAR (busca el emoji ✏️):
+    - <title>                          ✏️ título + " · Jorge Enríquez"
+    - <meta name="description">        ✏️ resumen del artículo
+    - <meta property="og:title">       ✏️ mismo título
+    - <meta property="og:description"> ✏️ mismo resumen
+    - .article-category                ✏️ categoría en MAYÚSCULAS
+    - .article-date                    ✏️ fecha legible (ej: "13 MAY 2026")
+    - .article-read                    ✏️ tiempo de lectura (ej: "8 MIN")
+    - <h1 class="article-title">       ✏️ título del artículo
+    - <p class="article-lede">         ✏️ bajada / resumen del artículo
+    - <div class="article-body">       ✏️ contenido del artículo (todo el cuerpo)
+=================================================================================
+-->
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ✏️ TÍTULO DEL ARTÍCULO + nombre del autor -->
+  <title>La Habilidad de concentrarse · Jorge Enríquez</title>
+  <!-- ✏️ RESUMEN para SEO y para compartir en redes -->
+  <meta name="description" content="¿Cuántas horas de tu vida le dedicaste este año al aprendizaje y a tu crecimiento?">
+  <meta name="author" content="Jorge Enríquez">
+
+  <!-- Open Graph (cuando alguien lo comparte en WhatsApp, LinkedIn, etc.) -->
+  <meta property="og:title" content="La Habilidad de concentrarse · Jorge Enríquez">
+  <meta property="og:description" content="La Habilidad de concentrarse · Jorge Enríquez">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="es_MX">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="La Habilidad de concentrarse · Jorge Enríquez">
+  <meta name="twitter:description" content="La Habilidad de concentrarse · Jorge Enríquez">
+
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Estilos (ojo: ../ porque este archivo está dentro de /articulos/) -->
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+
+  <!-- ====================================================================
+       NAVBAR (mismo que la portada, pero los enlaces apuntan a ../index.html)
+  ===================================================================== -->
+  <nav class="nav" aria-label="Navegación principal">
+    <a href="../index.html" class="logo" aria-label="Inicio · Jorge Enríquez">
+      arq<i>·</i>enriquez
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="../index.html#blog">Blog</a></li>
+      <li><a href="../index.html#proyectos">Proyectos</a></li>
+      <li><a href="../index.html#sobre">Sobre mí</a></li>
+      <li><a href="../index.html#cursos">Cursos</a></li>
+      <li><a href="../index.html#contacto">Contacto</a></li>
+      <li>
+        <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema oscuro/claro" title="Cambiar tema">
+          <span class="theme-icon">◐</span>
+        </button>
+      </li>
+    </ul>
+  </nav>
+
+
+  <!-- ====================================================================
+       ARTÍCULO
+  ===================================================================== -->
+  <main>
+    <article class="article-page">
+
+      <!-- HEADER DEL ARTÍCULO ============================================ -->
+      <header class="article-header">
+        <div class="container">
+          <a href="../index.html#blog" class="article-back">← Volver al blog</a>
+
+          <p class="article-meta-line">
+            <!-- ✏️ CATEGORÍA -->
+            <span class="article-category">RANDOM</span>
+            <span class="article-meta-sep">·</span>
+            <!-- ✏️ FECHA LEGIBLE -->
+            <span class="article-date">10 MAY 2026</span>
+            <span class="article-meta-sep">·</span>
+            <!-- ✏️ TIEMPO DE LECTURA -->
+            <span class="article-read">5 MIN</span>
+          </p>
+
+          <!-- ✏️ TÍTULO DEL ARTÍCULO -->
+          <h1 class="article-title">La Habilidad de concentrarse</h1>
+
+          <!-- ✏️ BAJADA / SUBTÍTULO / RESUMEN -->
+          <p class="article-lede">
+          Esta habilidad es fundamental para este mundo distraído.
+          </p>
+        </div>
+      </header>
+
+
+      <!-- IMAGEN PRINCIPAL DEL ARTÍCULO -->
+      <figure class="article-hero">
+        <img src="../assets/images/articulos/la-habilidad-de-concentrarse.jpg" alt="Trabajo Profundo">
+      </figure>
+
+
+      <!-- CUERPO DEL ARTÍCULO ============================================
+           Aquí va el contenido. Las etiquetas disponibles son:
+             <p>            párrafo normal
+             <h2>           sección
+             <h3>           subsección
+             <blockquote>   cita destacada
+             <ul>/<ol>      listas
+             <a href="">    enlaces
+             <strong>       énfasis fuerte (negrita)
+             <em>           énfasis sutil (cursiva)
+             <code>         fragmento de código en línea
+             <pre><code>    bloque de código
+             <img src="" alt="">  imagen
+             <figure><figcaption> imagen con leyenda
+           Todas tienen estilo automático — no necesitas añadir clases.
+      ================================================================ -->
+      <div class="article-body">
+        <div class="container">
+
+          <!-- ✏️ EMPIEZA AQUÍ EL CONTENIDO DE TU ARTÍCULO -->
+
+          <p>
+            En 2022 leí un libro que realmente me voló la cabeza y que quisiera compartir contigo. 
+            El libro en cuestión es Deep Work (céntrate, o en otras traducciones es enfócate) del 
+            autor Cal Newport.
+          </p>
+          <p>
+            Este libro parte de una <strong>poderosa idea principal,</strong> y es la siguiente:
+          </p>
+          <p>
+            Nuestra economía ha cambiado. Los trabajos superficiales, fáciles de replicar y que no requieren 
+            una gran exigencia desde el punto de vista cognitivo tenderán cada vez más a escasear o 
+            desaparecer. En cambio, <strong>las personas que aprendan a concentrarse, que dominen el arte de 
+            aprender rápidamente cosas complicadas, y que una vez dominadas, puedan repetir el proceso de 
+            aprender nuevamente, esas personas, son las que triunfarán en el futuro próximo.</strong>
+          </p>
+          <p>
+            Esta premisa es radical, y sobre todo, tomando en cuenta que fue escrita antes de la revolución 
+            de la inteligencia artificial de <em>Anthropic</em> y <em>OpenIA</em>. Newport afirma que ya no se necesitarán 
+            personas que operen máquinas, sino personas que sepan programar a las máquinas para cada vez 
+            tareas más complicadas. En otras palabras, <strong>las personas que tengan la proverbial capacidad 
+            para trabajar con máquinas cada vez más complejas, y obtener de ellas valiosos resultados, serán 
+            las que prosperen. El proceso de dominar cosas difíciles nunca termina, y para ello, es necesario 
+            desarrollar la habilidad de concéntrense, enfocarse y trabajar de forma profunda 
+            (Deep Work).</strong> Este es el tema principal de este libro.
+          </p>
+          <p>
+            Esto resuena hoy en día en 2026, cuando los despidos masivos por inteligencia artificial ya han 
+            comenzado. Solo los que aprendan rápido a usar la complejidad de la IA y que se mantengan en ese 
+            ritmo constante de aprendizaje, son los que serán valiosos en esta nueva era. 
+          </p>
+          <p>
+            Para mantener ese ritmo de aprendizaje, se necesita una capacidad cognitiva casi olvidada: La 
+            concentración profunda. El libro lo define así:
+          </p>
+          <blockquote>
+            Trabajo a fondo: actividades profesionales que se llevan a cabo en un estado de concentración 
+            desprovisto de distracciones, de tal manera que las capacidades cognitivas llegan a su límite 
+            máximo. Este esfuerzo crea valor, mejora las habilidades y no es sencillo de replicar.
+            <br><em>Cal Newport</em>
+          </blockquote>
+          <p>
+            La hipótesis de trabajar a fondo: <strong>la aptitud para llevar a cabo un trabajo
+            en profundidad es cada vez más escasa, pero, al mismo tiempo, cada vez más 
+            valiosa en nuestra economía. </strong> resultado de esta dinámica, triunfarán 
+            quienes cultiven esta aptitud y hagan de ella el pilar de su vida laboral.
+          </p>
+          <h3>
+            Trabajar a Fondo o en profundidad permite aprender rápidamente cosas difíciles.
+          </h3>
+          <p>
+            Para aprender se requiere una intensa concentración. Diversos estudios citados en el libro nos 
+            demuestran que las personas que resultan sobresalientes en una actividad en específico lo 
+            logran no por que hayan nacido con capacidades especiales o diferentes, sino más bien, porque 
+            supieron desarrollar la habilidad de realizar un esfuerzo deliberado para mejorar un desempeño 
+            específico. O como explican los autores de uno de los estudios:
+          </p>
+          <blockquote>
+            <em>«Los genios mismos solo pudieron volverse grandes gracias a la aplicación de toda su fuerza 
+              en el punto donde habían decidido demostrar su capacidad»</em>
+          </blockquote>
+          <h3>
+            El cerebro cambia su estructura mediante el trabajo profundo:
+          </h3>
+          <p>
+            Es importante concentrarse intensamente en determinada tarea y evitar las distracciones, 
+            porque esta es la única manera de aislar el circuito neurológico relevante, de tal manera que 
+            se produzcan los niveles de mielinización suficientes.
+          </p>
+          <p>
+            La mielina es una capa de tejido graso que envuelve las terminaciones nerviosas. las personas 
+            mejoramos en una destreza a medida que desarrollamos más mielina en las neuronas relevantes, 
+            lo que hace que el circuito correspondiente actúe más eficazmente haciendo menos esfuerzos.
+          </p>
+          <p>
+            Para aprender rápidamente cosas difíciles, es necesario concentrarse con intensidad y sin 
+            distracciones. Dicho de otro modo, aprender requiere trabajar a fondo.
+          </p>
+          <p>
+            Es por eso que, la premisa principal de este libro, <strong>la habilidad de concentrarse y 
+              trabajar en profundidad, por periodos prolongados de tiempo durante el día, y durante meses, 
+              es una habilidad fundamental desarrollar en el actual mundo distraído. Quienes lo logren, 
+              tendrán mas oportunidades de destacar.</strong>
+          </p>
+          <p>
+            El resto del libro son técnicas para lograr esos niveles de concentración en un trabajo profundo, 
+            sin embargo, la idea principal del libro, cambió mucho mi forma de pensar, mi forma de ver mi 
+            trabajo, mis ideas hacerca de la productividad y el famoso <em>“multi-taasking”</em> y me ha 
+            orientado a enfocarme deliberadamente por periodos ininterrumpidos para poder aprender y 
+            mantenerme vigente en este mundo cambiante. 
+          </p>
+          <p>
+            Te recomiendo leer el libro completo
+          </p>
+
+          <!-- ✏️ TERMINA AQUÍ EL CONTENIDO -->
+
+        </div>
+      </div>
+
+
+      <!-- BLOQUE FINAL — SOBRE EL AUTOR ================================== -->
+      <footer class="article-footer">
+        <div class="container">
+          <div class="article-author">
+            <p class="article-author-tag">ESCRITO POR</p>
+            <h3>Jorge Enríquez</h3>
+            <p>Arquitecto, Blogger, polímata. Construyo espacios y pienso en voz alta.</p>
+            <a href="../index.html#sobre" class="article-author-link">Saber más sobre mí →</a>
+          </div>
+        </div>
+      </footer>
+
+    </article>
+  </main>
+
+
+  <!-- ====================================================================
+       FOOTER (mismo que la portada)
+  ===================================================================== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© <span id="currentYear">2026</span> · JORGE ENRÍQUEZ</p>
+      <p>HECHO CON INTENCIÓN</p>
+    </div>
+  </footer>
+
+
+  <!-- ====================================================================
+       JAVASCRIPT (mismo que la portada)
+  ===================================================================== -->
+  <script src="../js/script.js" defer></script>
+
+</body>
+</html>

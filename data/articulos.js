@@ -60,6 +60,15 @@ window.CATEGORIAS = [
 window.ARTICULOS = [
 
   {
+    slug: "la-habilidad-de-concentrarse",
+    title: "La Habilidad de concentrarse",
+    excerpt: "La habilidad de concentrarse es fundamental en este mundo distraído.",
+    category: "RANDOM",
+    date: "2026-05-10",
+    readTime: "5 MIN"
+  },
+
+  {
     slug: "aprendizaje-infinito",
     title: "Aprendizaje Infinito",
     excerpt: "¿Cuántas horas de tu vida le dedicaste este año al aprendizaje y a tu crecimiento?",
