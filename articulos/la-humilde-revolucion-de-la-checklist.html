@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<!--
+=================================================================================
+  PLANTILLA DE ARTÍCULO — ARQENRIQUEZ.COM
+  -------------------------------------------------------------------------------
+  CÓMO USAR ESTA PLANTILLA:
+    1. Duplica este archivo.
+    2. Muévelo a la carpeta /articulos/ con el nombre <slug>.html
+       (mismo slug que pones en /data/articulos.js)
+    3. Edita los puntos marcados con  ✏️  abajo.
+    4. Añade la entrada correspondiente en /data/articulos.js
+       (los nuevos arriba del array para que aparezcan primero).
+
+  ZONAS QUE DEBES EDITAR (busca el emoji ✏️):
+    - <title>                          ✏️ título + " · Jorge Enríquez"
+    - <meta name="description">        ✏️ resumen del artículo
+    - <meta property="og:title">       ✏️ mismo título
+    - <meta property="og:description"> ✏️ mismo resumen
+    - .article-category                ✏️ categoría en MAYÚSCULAS
+    - .article-date                    ✏️ fecha legible (ej: "13 MAY 2026")
+    - .article-read                    ✏️ tiempo de lectura (ej: "8 MIN")
+    - <h1 class="article-title">       ✏️ título del artículo
+    - <p class="article-lede">         ✏️ bajada / resumen del artículo
+    - <div class="article-body">       ✏️ contenido del artículo (todo el cuerpo)
+=================================================================================
+-->
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ✏️ TÍTULO DEL ARTÍCULO + nombre del autor -->
+  <title>¿Por qué fallamos incluso cuando somos expertos?  · Jorge Enríquez</title>
+  <!-- ✏️ RESUMEN para SEO y para compartir en redes -->
+  <meta name="description" content="La humilde revolución de la lista de comprobación: por qué fallamos incluso cuando somos expertos, y cómo los sistemas vencen al genio individual.">
+  <meta name="author" content="Jorge Enríquez">
+
+  <!-- Open Graph (cuando alguien lo comparte en WhatsApp, LinkedIn, etc.) -->
+  <meta property="og:title" content="¿Por qué fallamos incluso cuando somos expertos? · Jorge Enríquez">
+  <meta property="og:description" content="La humilde revolución de la lista de comprobación: por qué fallamos incluso cuando somos expertos, y cómo los sistemas vencen al genio individual.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="es_MX">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="¿Por qué fallamos incluso cuando somos expertos? · Jorge Enríquez">
+  <meta name="twitter:description" content="La humilde revolución de la lista de comprobación: por qué fallamos incluso cuando somos expertos, y cómo los sistemas vencen al genio individual.">
+
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Estilos (ojo: ../ porque este archivo está dentro de /articulos/) -->
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+
+  <!-- ====================================================================
+       NAVBAR (mismo que la portada, pero los enlaces apuntan a ../index.html)
+  ===================================================================== -->
+  <nav class="nav" aria-label="Navegación principal">
+    <a href="../index.html" class="logo" aria-label="Inicio · Jorge Enríquez">
+      arq<i>·</i>enriquez
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="../index.html#blog">Blog</a></li>
+      <li><a href="../index.html#proyectos">Proyectos</a></li>
+      <li><a href="../index.html#sobre">Sobre mí</a></li>
+      <li><a href="../index.html#cursos">Cursos</a></li>
+      <li><a href="../index.html#contacto">Contacto</a></li>
+      <li>
+        <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema oscuro/claro" title="Cambiar tema">
+          <span class="theme-icon">◐</span>
+        </button>
+      </li>
+    </ul>
+  </nav>
+
+
+  <!-- ====================================================================
+       ARTÍCULO
+  ===================================================================== -->
+  <main>
+    <article class="article-page">
+
+      <!-- HEADER DEL ARTÍCULO ============================================ -->
+      <header class="article-header">
+        <div class="container">
+          <a href="../index.html#blog" class="article-back">← Volver al blog</a>
+
+          <p class="article-meta-line">
+            <!-- ✏️ CATEGORÍA -->
+            <span class="article-category">PROJECT MANAGEMENT</span>
+            <span class="article-meta-sep">·</span>
+            <!-- ✏️ FECHA LEGIBLE -->
+            <span class="article-date">23 JUN 2026</span>
+            <span class="article-meta-sep">·</span>
+            <!-- ✏️ TIEMPO DE LECTURA -->
+            <span class="article-read">7 MIN</span>
+          </p>
+
+          <!-- ✏️ TÍTULO DEL ARTÍCULO -->
+          <h1 class="article-title">¿Por qué fallamos incluso cuando somos expertos?</h1>
+
+          <!-- ✏️ BAJADA / SUBTÍTULO / RESUMEN -->
+          <p class="article-lede">
+          La humilde revolución de la lista de comprobación.
+          </p>
+        </div>
+      </header>
+
+
+      <!-- IMAGEN PRINCIPAL DEL ARTÍCULO -->
+      <figure class="article-hero">
+        <img src="../assets/images/articulos/la-humilde-revolucion-de-la-checklist.jpg" alt="La humilde revolución de la lista de comprobación">
+      </figure>
+
+
+      <!-- CUERPO DEL ARTÍCULO ============================================
+           Aquí va el contenido. Las etiquetas disponibles son:
+             <p>            párrafo normal
+             <h2>           sección
+             <h3>           subsección
+             <blockquote>   cita destacada
+             <ul>/<ol>      listas
+             <a href="">    enlaces
+             <strong>       énfasis fuerte (negrita)
+             <em>           énfasis sutil (cursiva)
+             <code>         fragmento de código en línea
+             <pre><code>    bloque de código
+             <img src="" alt="">  imagen
+             <figure><figcaption> imagen con leyenda
+           Todas tienen estilo automático — no necesitas añadir clases.
+      ================================================================ -->
+      <div class="article-body">
+        <div class="container">
+
+          <!-- ✏️ EMPIEZA AQUÍ EL CONTENIDO DE TU ARTÍCULO -->
+
+          <p>
+           Vivimos bajo el peso de una paradoja asfixiante: nunca hemos poseído tanto 
+           conocimiento como hoy, pero esa misma abundancia se ha convertido en nuestro 
+           mayor riesgo. La ciencia médica, por ejemplo, ha identificado ya más de 13,000 
+           enfermedades, síndromes y tipos de lesiones; para combatirlos, disponemos de 
+           6,000 fármacos y 4,000 procedimientos quirúrgicos. El volumen de lo que sabemos 
+           ha superado nuestra capacidad biológica de procesarlo. El conocimiento ya no 
+           es solo una herramienta; es una carga que nos ahoga. 
+          </p>
+
+          <p>
+            Ante esta marea de complejidad, surge una pregunta que hiere el orgullo 
+            profesional: ¿puede una simple hoja de papel ser la diferencia entre la vida y 
+            la muerte? 
+          </p>
+
+          <h2><em>¿Puede un Checklist ser la diferencia entre la vida y la muerte?</em></h2>
+
+          <p>
+            Para entender nuestro fracaso actual, quisiera recomendarte el libro de Atul 
+            Gawande: The Checklist Manifesto. Según el autor, erramos por dos motivos. El 
+            primero es la ignorancia: el vacío donde la ciencia aún no tiene respuestas. El 
+            segundo es la ineptitud: el fracaso que ocurre cuando el conocimiento existe, 
+            pero no logramos aplicarlo correctamente. 
+          </p>
+          <p>
+            Durante siglos, la humanidad luchó contra la ignorancia. Sin embargo, en el 
+            siglo XXI, por primera vez en la historia, la ineptitud —el no hacer lo que ya 
+            sabemos hacer— es una causa de fracaso mucho más frecuente y devastadora. 
+            «Algunas de las cosas que queremos hacer están sencillamente por encima de 
+            nuestras capacidades. No tenemos el don de la omnisciencia ni somos todopoderosos». 
+          </p>
+
+          <p>
+            Gawande narra numerosos ejemplos donde el ser humano falla en aplicar conocimientos 
+            ya existentes. Por ejemplo: la tragedia del 30 de octubre de 1935 en la Base 
+            Wright de Dayton, Ohio. El ejército estadounidense evaluaba el Model 299 de Boeing, 
+            una joya de la ingeniería bautizada como la «fortaleza volante». El avión era 
+            infinitamente superior a sus rivales, pero durante el despegue, el mayor Ployer 
+            P. Hill, uno de los pilotos más experimentados del país, entró en pérdida y se 
+            estrelló, perdiendo la vida. La investigación fue reveladora: no hubo fallo 
+            mecánico. Hill simplemente olvidó desbloquear el mecanismo de cierre de los 
+            controles del timón de profundidad. El avión era técnicamente perfecto, pero, 
+            en palabras de la prensa,  
+            <em><strong>era «demasiado avión para un solo hombre».</strong></em> 
+          </p>
+          
+          <blockquote>
+            La pericia individual había sido derrotada por la complejidad técnica. La solución 
+            de los pilotos de prueba no fue exigir más entrenamiento, sino crear una 
+            herramienta para lo "obvio": una lista de comprobación con pasos <em><strong>
+            "For Dummies"</strong></em> pero importantísimos. Con ella, el B-17 voló 2.8 
+            millones de kilómetros sin un solo accidente. 
+          </blockquote>
+          
+          <p>
+            Muchas profesiones modernas —la medicina, el derecho, la ingeniería— han llegado 
+            hoy a su propia "fase B-17": la especialización es tal que la memoria humana ya 
+            no es un depósito confiable. 
+          </p>
+          
+          <p>
+            <strong>En el mundo de la construcción,</strong> esta realidad se aceptó mucho 
+            antes que en la medicina. El modelo del <strong><em>"Maestro de Obras"</em> 
+            medieval,</strong> aquel genio omnisciente que diseñaba y supervisaba cada 
+            piedra, se extinguió hace décadas. Edificios como hospitales, rascacielos, 
+            complejos turísticos o corporativos demuestran que la complejidad solo se 
+            domina fragmentándola en especialidades.
+          </p>
+        
+          <p>
+            <strong>Un edificio moderno requiere la coordinación de al menos 16 oficios distintos. 
+            </strong> árese esto con la medicina: un paciente crítico en la UCI un paciente 
+            promedio requiere 178 acciones individuales al día, cada una con su propio riesgo 
+            de error. Este mismo paciente puede pasar por las manos de 20 o más profesionales. 
+            Si el equipo falla solo en el 1% de esas 178 acciones diarias, el paciente recibe 
+            dos errores diarios
+          </p>
+          
+          <p>
+            En <strong>sistemas complejos</strong>, la autonomía del experto no es suficiente; 
+            es, de hecho, peligrosa. Sin embargo, el hallazgo más sorprendente de autores 
+            como Atul Gawande es que una lista no solo sirve para marcar tareas técnicas. 
+            Las más poderosas son las listas de comunicación
+          </p>
+
+          <p>
+            En la <strong>construcción</strong> de rascacielos, no se puede prever cada 
+            imprevisto, pero se puede forzar a los expertos a hablar. En los quirófanos de 
+            la OMS, esto se tradujo en el <em>"fenómeno de activación":</em> obligar a todos 
+            los miembros del equipo a presentarse por su nombre antes de la primera incisión. 
+            Este acto democratiza el poder. Si una enfermera conoce el nombre del cirujano y 
+            ha sido invitada a participar, el "muro de silencio" jerárquico se rompe. Esto 
+            permite que cualquier persona, sin importar su rango, señale un error crítico. 
+          </p>
+
+          <p>
+            Mientras que los pasos técnicos resuelven problemas "simples", la red de 
+            comunicación permite al sistema adaptarse a problemas "complejos" e imprevisibles. 
+          </p>
+
+          <blockquote>
+            La revolución de la lista de comprobación es, en esencia, una lección de humildad. 
+            Aceptar nuestra falibilidad es el único camino hacia la excelencia. La disciplina 
+            del sistema siempre superará al genio individual cuando la presión aumenta
+          </blockquote>
+
+          <p>
+            Gawande narra también un caso de como la cadena Wal-Mart ayudó a los damnificados 
+            durante el huracán Katrina: mientras el gobierno fallaba en llevar ayuda por un 
+            exceso de mando centralizado tardando días, el CEO Lee Scott descentralizó el 
+            poder, dando permiso a los gerentes locales para "tomar decisiones por encima de 
+            su nivel". Esa autonomía dentro de un sistema de metas comunes permitió salvar 
+            vidas donde la burocracia fracasó. 
+          </p>
+
+          <h2>El éxito definitivo no es el del solista, sino el de la orquesta.</h2>
+
+          <p>
+            El caso más impactante del libro es sin duda uno que se narra casi al principio 
+            del mismo. Una niña se ahoga debajo de un lago congelado Cuando los rescatistas 
+            lograron sacarla, no respiraba. Su corazón se había detenido. Su temperatura 
+            corporal había descendido a niveles extremos. Clínicamente, estaba muerta. La 
+            trasladaron de urgencia al hospital. Lo que siguió fue una carrera contra el 
+            tiempo en la que participaron decenas de personas: paramédicos, enfermeras, 
+            cirujanos, anestesiólogos, intensivistas y especialistas en circulación 
+            extracorpórea. Ninguno podía permitirse improvisar. Cada uno tenía una tarea 
+            precisa. Cada paso seguía protocolos establecidos. No había lugar para héroes 
+            solitarios; era un esfuerzo coordinado.
+          </p>
+
+          <p>
+            Mientras algunos aseguraban las vías respiratorias, otros preparaban las máquinas 
+            de circulación extracorpórea para reemplazar temporalmente las funciones del 
+            corazón y los pulmones. Toda su sangre salió de su cuerpo por una intravenosa 
+            en un brazo, pasaba por una maquina que la calentaba y regresaba su cuerpo por 
+            el otro brazo. Se administraban medicamentos, se monitoreaban signos vitales y 
+            se seguían listas y procedimientos cuidadosamente diseñados. Durante horas, el 
+            equipo trabajó con una disciplina casi mecánica, ejecutando una secuencia de 
+            acciones que había sido perfeccionada por generaciones de experiencia médica.
+          </p>
+
+          <p>
+            Poco a poco, su cuerpo comenzó a calentarse. Increíblemente 
+            <strong>su corazón volvió a latir</strong>. 
+          </p>
+
+          <blockquote>
+            La niña salvo se salvó gracias a que un grupo de profesionales siguió se 
+            supo comunicar y seguir al pie de la letra procesos extremadamente complejos.
+          </blockquote>
+
+          <h2>
+            ¿Qué procesos en su propia vida o trabajo se beneficiarían hoy de un 
+            poco menos de ego y un poco más de sistema? 
+          </h2>
+
+          <blockquote>
+            La excelencia no reside en no cometer errores, sino en tener la humildad 
+            de construir sistemas que nos sirvan como una red que nos impida caer cuando lo hagamos.
+          </blockquote>
+
+
+
+          <!-- ✏️ TERMINA AQUÍ EL CONTENIDO -->
+
+        </div>
+      </div>
+
+
+      <!-- BLOQUE FINAL — SOBRE EL AUTOR ================================== -->
+      <footer class="article-footer">
+        <div class="container">
+          <div class="article-author">
+            <p class="article-author-tag">ESCRITO POR</p>
+            <h3>Jorge Enríquez</h3>
+            <p>Arquitecto, Blogger, polímata. Construyo espacios y pienso en voz alta.</p>
+            <a href="../index.html#sobre" class="article-author-link">Saber más sobre mí →</a>
+          </div>
+        </div>
+      </footer>
+
+    </article>
+  </main>
+
+
+  <!-- ====================================================================
+       FOOTER (mismo que la portada)
+  ===================================================================== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© <span id="currentYear">2026</span> · JORGE ENRÍQUEZ</p>
+      <p>HECHO CON INTENCIÓN</p>
+    </div>
+  </footer>
+
+
+  <!-- ====================================================================
+       JAVASCRIPT (mismo que la portada)
+  ===================================================================== -->
+  <script src="../js/script.js" defer></script>
+
+</body>
+</html>

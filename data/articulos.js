@@ -60,6 +60,15 @@ window.CATEGORIAS = [
 window.ARTICULOS = [
 
   {
+    slug: "la-humilde-revolucion-de-la-checklist",
+    title: "¿Por qué fallamos incluso cuando somos expertos?",
+    excerpt: "La humilde revolución de la lista de comprobación: cómo una simple hoja de papel puede vencer al genio individual cuando la presión aumenta.",
+    category: "PROJECT MANAGEMENT",
+    date: "2026-06-23",
+    readTime: "7 MIN"
+  },
+
+  {
     slug: "la-habilidad-de-concentrarse",
     title: "La Habilidad de concentrarse",
     excerpt: "La habilidad de concentrarse es fundamental en este mundo distraído.",
