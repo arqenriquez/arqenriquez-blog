@@ -34,11 +34,14 @@
 
   <!-- ====================================================================
        FAVICON
-       Cuando tengas tu logo, lo guardas como favicon.ico en la raíz
-       y como apple-touch-icon.png (180x180) para móviles.
+       Archivos que van en la RAÍZ del proyecto (junto a index.html):
+         - favicon.ico            → icono clásico (obligatorio)
+         - favicon.svg            → icono nítido en navegadores modernos (opcional)
+         - apple-touch-icon.png   → 180x180, para "Añadir a inicio" en iOS (opcional)
   ===================================================================== -->
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <!-- <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"> -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
   <!-- ====================================================================
        FUENTES (Google Fonts con preconnect para mejor performance)
