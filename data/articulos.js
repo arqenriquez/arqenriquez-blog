@@ -60,6 +60,15 @@ window.CATEGORIAS = [
 window.ARTICULOS = [
 
   {
+    slug: "last-planner-system",
+    title: "¿Por qué la mitad de lo que prometes el lunes es mentira el viernes?",
+    excerpt: "Last Planner® System: la revolución silenciosa que convierte la planificación de obra en compromisos reales y acaba con el caos, los retrabajos y los retrasos.",
+    category: "PROJECT MANAGEMENT",
+    date: "2026-06-27",
+    readTime: "8 MIN"
+  },
+
+  {
     slug: "la-humilde-revolucion-de-la-checklist",
     title: "¿Por qué fallamos incluso cuando somos expertos?",
     excerpt: "La humilde revolución de la lista de comprobación: cómo una simple hoja de papel puede vencer al genio individual cuando la presión aumenta.",
