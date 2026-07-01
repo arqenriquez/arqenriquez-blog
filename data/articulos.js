@@ -60,6 +60,15 @@ window.CATEGORIAS = [
 window.ARTICULOS = [
 
   {
+    slug: "del-programa-arquitectonico-al-deleite",
+    title: "Del programa Arquitectónico al Deleite",
+    excerpt: "La metodología del diseño arquitectónico para crear espacios con significado.",
+    category: "ARQUITECTURA",
+    date: "2026-07-01",
+    readTime: "7 MIN"
+  },
+
+  {
     slug: "last-planner-system",
     title: "¿Por qué la mitad de lo que prometes el lunes es mentira el viernes?",
     excerpt: "Last Planner® System: la revolución silenciosa que convierte la planificación de obra en compromisos reales y acaba con el caos, los retrabajos y los retrasos.",
